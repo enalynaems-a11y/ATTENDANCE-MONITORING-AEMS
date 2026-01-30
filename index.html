@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 35px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 320px;
+      text-align: center;
+    }
+
+    h3 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+    }
+
+    .hidden { display: none; }
+
+    .result {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <button id="startBtn">Start</button>
+
+    <div id="formSection" class="hidden">
+      <h3>Employee Attendance</h3>
+      <input type="text" id="fname" placeholder="First Name" required>
+      <input type="text" id="mi" placeholder="Middle Initial" maxlength="1">
+      <input type="text" id="lname" placeholder="Surname" required>
+
+      <input type="time" id="time" required>
+
+      <select id="status" required>
+        <option value="">Select</option>
+        <option value="Time In">Time In</option>
+        <option value="Time Out">Time Out</option>
+      </select>
+
+      <button id="submitBtn">Submit</button>
+      <div id="result" class="result hidden"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function () {
+      document.getElementById("formSection").classList.remove("hidden");
+      this.style.display = "none";
+    });
+
+    document.getElementById("submitBtn").addEventListener("click", function () {
+      const fname = document.getElementById("fname").value.trim();
+      const mi = document.getElementById("mi").value.trim();
+      const lname = document.getElementById("lname").value.trim();
+      const time = document.getElementById("time").value;
+      const status = document.getElementById("status").value;
+
+      if (!fname || !lname || !time || !status) {
+        alert("Please complete all required fields.");
+        return;
+      }
+
+      document.getElementById("result").innerHTML = "Recorded Successfully!";
+      document.getElementById("result").classList.remove("hidden");
+    });
+  </script>
+
+</body>
+</html>
